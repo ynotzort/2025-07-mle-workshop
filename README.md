@@ -2,6 +2,8 @@
 
 ## day 1
 
+this project is based on https://github.com/alexeygrigorev/ml-engineering-contsructor-workshop
+
 ### how to install UV
 just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
