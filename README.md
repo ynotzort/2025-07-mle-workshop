@@ -46,3 +46,4 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 - remove top level statements
 - improve code
 - we can run it via `uv run python duration_prediction/train.py`
+- parametrize the train function
