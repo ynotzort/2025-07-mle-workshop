@@ -14,6 +14,7 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
 ### download the notebook:
 
+- `mkdir notebooks`
 - `cd notebooks`
 - `wget "https://raw.githubusercontent.com/alexeygrigorev/ml-engineering-contsructor-workshop/refs/heads/main/01-train/duration-prediction-starter.ipynb"`
 - `cd ..`
