@@ -43,3 +43,4 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
     
 - remove # lines from script
 - move imports all to top
+- remove top level statements
