@@ -55,3 +55,10 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
 ### create a makefile
 now we can run our training via `make train`
+
+### tests
+- `uv add pytest`
+- `mkdir tests`
+- create a `__init__.py` file inside of `tests`
+- create a file `test_train.py` inside of `tests` (it has to start with `test_`)
+- run tests via `uv run pytest` or `make test`
