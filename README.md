@@ -51,3 +51,7 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 - add docstrings to functions
 - logging: `uv add loguru`
 - split out argparse into main.py and make it a module. now we call our code via `uv run python -m duration_prediction.main --train-date 2022-01 --val-date 2022-02 --model-save-path out_file.np`
+
+
+### create a makefile
+now we can run our training via `make train`
