@@ -32,3 +32,5 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 ### convert notebook into a script
 - `uv run jupyter nbconvert --to=script notebooks/duration-prediction-starter.ipynb`
 - create a new folder `duration_prediction` and move the file `duration-prediction-starter.py` into that folder and rename it into `train.py`
+
+### lets make the train.py script nice
