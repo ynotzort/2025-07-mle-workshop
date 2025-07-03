@@ -12,7 +12,23 @@ from sklearn.metrics import mean_squared_error
 from sklearn.pipeline import make_pipeline
 import argparse
 
-def read_dataframe(filename):
+def read_dataframe(filename: str):
+    """
+    Reads a Parquet file into a pandas DataFrame, calculates trip duration in minutes, 
+    filters out trips outside the 1-60 minute range, and converts specified columns to string.
+
+    Parameters:
+    ----------
+    filename : str
+        Path to the Parquet file containing trip data.
+
+    Returns:
+    -------
+    pd.DataFrame
+        A cleaned DataFrame with an added 'duration' column (in minutes), 
+        filtered for valid trip durations, and with categorical location IDs 
+        converted to string type.
+    """
     df = pd.read_parquet(filename)
 
     df['duration'] = df.lpep_dropoff_datetime - df.lpep_pickup_datetime
@@ -27,6 +43,27 @@ def read_dataframe(filename):
 
 
 def train(train_date: date, val_date: date, out_path: str):
+    """
+    Trains a linear regression model to predict trip duration based on NYC green taxi trip data.
+
+    Downloads training and validation datasets based on input dates, processes them,
+    fits a model using DictVectorizer and LinearRegression, evaluates it using RMSE, 
+    and saves the trained pipeline to a file.
+
+    Parameters
+    ----------
+    train_date : date
+        The date representing the training dataset's month and year.
+    val_date : date
+        The date representing the validation dataset's month and year.
+    out_path : str
+        Path where the trained model pipeline will be saved (as a pickle file).
+
+    Returns
+    -------
+    None
+        The function saves the trained model pipeline to the specified path and prints RMSE.
+    """
     base_url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_{year}-{month:02d}.parquet'
     train_url = base_url.format(year=train_date.year, month=train_date.month)
     val_url = base_url.format(year=val_date.year, month=val_date.month)

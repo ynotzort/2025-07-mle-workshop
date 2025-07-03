@@ -48,3 +48,4 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 - we can run it via `uv run python duration_prediction/train.py`
 - parametrize the train function
 - use argparse: now we can call it via `uv run python duration_prediction/train.py --train-date 2022-01 --val-date 2022-02 --model-save-path out_file.np`
+- add docstrings to functions
