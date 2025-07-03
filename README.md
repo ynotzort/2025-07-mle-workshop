@@ -20,3 +20,15 @@ just run `curl -LsSf https://astral.sh/uv/install.sh | sh`
 - `cd notebooks`
 - `wget "https://raw.githubusercontent.com/alexeygrigorev/ml-engineering-contsructor-workshop/refs/heads/main/01-train/duration-prediction-starter.ipynb"`
 - `cd ..`
+
+### install dependencies
+- `uv add scikit-learn==1.2.2 pandas pyarrow`
+- fix issue with numpy via `uv add numpy==1.26.4`
+- install jupyter `uv add --dev jupyter seaborn`
+
+### launch jupyter notebook
+`uv run jupyter notebook`
+
+### convert notebook into a script
+- `uv run jupyter nbconvert --to=script notebooks/duration-prediction-starter.ipynb`
+- create a new folder `duration_prediction` and move the file `duration-prediction-starter.py` into that folder and rename it into `train.py`
