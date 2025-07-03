@@ -11,6 +11,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.pipeline import make_pipeline
 import argparse
+from loguru import logger
 
 def read_dataframe(filename: str):
     """
@@ -29,17 +30,23 @@ def read_dataframe(filename: str):
         filtered for valid trip durations, and with categorical location IDs 
         converted to string type.
     """
-    df = pd.read_parquet(filename)
+    logger.info(f"loading file: {filename}")
+    try:
+        df = pd.read_parquet(filename)
 
-    df['duration'] = df.lpep_dropoff_datetime - df.lpep_pickup_datetime
-    df.duration = df.duration.dt.total_seconds() / 60
+        df['duration'] = df.lpep_dropoff_datetime - df.lpep_pickup_datetime
+        df.duration = df.duration.dt.total_seconds() / 60
 
-    df = df[(df.duration >= 1) & (df.duration <= 60)]
+        df = df[(df.duration >= 1) & (df.duration <= 60)]
 
-    categorical = ['PULocationID', 'DOLocationID']
-    df[categorical] = df[categorical].astype(str)
-    
-    return df
+        categorical = ['PULocationID', 'DOLocationID']
+        df[categorical] = df[categorical].astype(str)
+        logger.info(f"{filename} had {len(df)} rows")
+        return df
+    except Exception as e:
+        logger.error(f"error reading: {filename}")
+        logger.error(e)
+        raise
 
 
 def train(train_date: date, val_date: date, out_path: str):
@@ -68,13 +75,8 @@ def train(train_date: date, val_date: date, out_path: str):
     train_url = base_url.format(year=train_date.year, month=train_date.month)
     val_url = base_url.format(year=val_date.year, month=val_date.month)
     
-    print(f"{train_url=}")
-    print(f"{val_url=}")
-
     df_train = read_dataframe(train_url)
     df_val = read_dataframe(val_url)
-
-    print(f"train_data length: {len(df_train)}, val_data length: {len(df_val)}")
 
     categorical = ['PULocationID', 'DOLocationID']
     numerical = ['trip_distance']
@@ -94,10 +96,13 @@ def train(train_date: date, val_date: date, out_path: str):
     y_pred = pipeline.predict(val_dicts)
 
     mse = mean_squared_error(y_val, y_pred, squared=False)
-    print(f"{mse=}")
+    logger.info(f"{mse=}")
 
+    logger.info(f"writing model into {out_path}")
     with open(out_path, 'wb') as f_out:
         pickle.dump(pipeline, f_out)
+    
+    return mse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train a model based on specified dates and save it to a given path")
