@@ -79,3 +79,5 @@ now we can run our training via `make train`
 - create it via `touch src/duration_pred_serve/ping.py`
 - run it via `uv run python src/duration_pred_serve/ping.py`
 
+### implement serve
+- run it via `uv run python src/duration_pred_serve/serve.py`
