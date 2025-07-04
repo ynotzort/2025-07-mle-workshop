@@ -1,19 +1,12 @@
 import pickle
 from flask import Flask, request, jsonify
+import os
+from loguru import logger
 
-model_path = "./models/2022-01.pkl"
+model_path = os.getenv("MODEL_PATH", "model.bin")
 with open(model_path, "rb") as f_in:
     model = pickle.load(f_in)
-
-# trip = {
-#     "PULocationID": "43",
-#     "DOLocationID": "238",
-#     "trip_distance": 1.16,
-# }
-
-# prediction = model.predict(trip)
-# print(prediction[0])
-
+logger.info(f"loaded model from {model_path}")
 
 # "feature engineering"
 def prepare_features(ride):

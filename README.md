@@ -85,3 +85,11 @@ now we can run our training via `make train`
 - created the make commands: 
     - `make run` for running the server
     - `make predict-test` for testing it (needs to be run in a separate terminal)
+    
+### environment variables
+
+- create one eg with `export HELLO=world`, this creates a variable named HELLO with the value "world"
+- print it out via `echo $HELLO`
+- in python you can access it via os.getenv()
+- lets define `export MODEL_PATH="./models/2022-01.pkl"`
+- add the export command to the makefile
