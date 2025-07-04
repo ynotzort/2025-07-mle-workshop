@@ -40,7 +40,7 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict_endpoint():
-    ride = request.json()
+    ride = request.get_json()
     features = prepare_features(ride)
     prediction = predict(features)
     result = {
