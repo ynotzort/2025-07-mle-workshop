@@ -93,3 +93,5 @@ now we can run our training via `make train`
 - in python you can access it via os.getenv()
 - lets define `export MODEL_PATH="./models/2022-01.pkl"`
 - add the export command to the makefile
+
+### use docker
