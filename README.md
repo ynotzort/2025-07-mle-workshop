@@ -95,3 +95,6 @@ now we can run our training via `make train`
 - add the export command to the makefile
 
 ### use docker
+- build the docker image via: `docker build -t duration-prediction .`
+- run it via `docker run -it duration-prediction:latest`
+- we created a make command for doing both: `make docker_run`
