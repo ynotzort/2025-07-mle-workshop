@@ -20,4 +20,5 @@ ENV LOGURU_LEVEL INFO
 EXPOSE 9696
 
 # run the app on startup
-ENTRYPOINT [ "uv", "run", "python", "duration_pred_serve/serve.py" ]
+# ENTRYPOINT [ "uv", "run", "python", "duration_pred_serve/serve.py" ]
+ENTRYPOINT [ "uv", "run", "gunicorn", "--bind=0.0.0.0:9696", "duration_pred_serve.serve:app" ]

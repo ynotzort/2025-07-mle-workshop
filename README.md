@@ -98,3 +98,8 @@ now we can run our training via `make train`
 - build the docker image via: `docker build -t duration-prediction .`
 - run it via `docker run -it duration-prediction:latest`
 - we created a make command for doing both: `make docker_run`
+
+### use gunicorn for production
+- `uv add gunicorn`
+- usually you run it via `uv run gunicorn --bind=0.0.0.0:9696 src.duration_pred_serve.serve:app`
+- but we just fix the entrypoint of the dockerfile
