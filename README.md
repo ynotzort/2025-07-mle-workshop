@@ -74,3 +74,8 @@ now we can run our training via `make train`
 - add requests(making web requests for testing) `uv add --dev requests` 
 - add loguru for logs: `uv add loguru`
 - copy over model from day 1 into a new folder `models`
+
+### ping example
+- create it via `touch src/duration_pred_serve/ping.py`
+- run it via `uv run python src/duration_pred_serve/ping.py`
+
