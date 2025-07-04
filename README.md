@@ -73,3 +73,4 @@ now we can run our training via `make train`
 - add flask (webserver) and pytest(testing): `uv add flask pytest`
 - add requests(making web requests for testing) `uv add --dev requests` 
 - add loguru for logs: `uv add loguru`
+- copy over model from day 1 into a new folder `models`
