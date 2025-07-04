@@ -103,3 +103,12 @@ now we can run our training via `make train`
 - `uv add gunicorn`
 - usually you run it via `uv run gunicorn --bind=0.0.0.0:9696 src.duration_pred_serve.serve:app`
 - but we just fix the entrypoint of the dockerfile
+
+### Lets deploy it to the world via fly.io
+- install via `curl -L https://fly.io/install.sh | sh`
+- run:
+```bash
+export FLYCTL_INSTALL="/home/codespace/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+```
+- run `fly launch`
