@@ -3,6 +3,9 @@ from flask import Flask, request, jsonify
 import os
 from loguru import logger
 
+VERSION = os.getenv("VERSION", "n/a")
+logger.info(f"running version: {VERSION}")
+
 model_path = os.getenv("MODEL_PATH", "model.bin")
 with open(model_path, "rb") as f_in:
     model = pickle.load(f_in)
@@ -40,6 +43,7 @@ def predict_endpoint():
         "prediction": {
             "duration": prediction,
         },
+        "version": VERSION,
     }
     return jsonify(result)
 
